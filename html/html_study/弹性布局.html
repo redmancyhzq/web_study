@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+  <title>layout</title>
+  <style>
+    body{
+      margin: 0;
+      padding: 0;
+      /* height:100%; */
+    }
+    .container{
+      height: 100%;
+      width:100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .top{
+      height: 50px;
+      width: 100%;
+      background-color: blue;
+    }
+    .footer{
+      height: 50px;
+      width: 100%;
+      background-color: rgb(190, 190, 218);
+    }
+    .center{
+      /* 弹性的部分标1 */ 
+      height: auto; 
+      width: 100%;
+      background-color: aqua;
+      flex: 1;
+    }
+   .center_left{
+      float: left;
+      height: 100%;
+      width: 300px;
+      background-color: blanchedalmond;
+    }
+    .center_right{
+      height: 100%;
+      margin-left: 300px;
+      background-color: rgb(202, 140, 49);
+  }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="top">TOP</div>    
+    <div class="center">
+      <div class="center_left"></div>
+      <div class="center_right"></div>
+      <div class="footer">FOOTER</div>
+    </div>
+  </div>
+ 
+</body>
+</html>

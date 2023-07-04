@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>demo</title>
+</head>
+<body>
+  <h1 style="color:rgb(224, 111, 130); background-color: rgb(210, 204, 204);text-align:center;">
+      中文古诗网
+  </h1>
+  
+  <marquee direction="left">
+    古诗网
+  </marquee>
+  <from>
+    <input type="text" id="btn"/><input id="find">搜索</input>
+
+  </from>
+  <div>
+    <img class="p1"src="img/1.jpg" width="600px" height="400px">
+    <li>
+      <p>
+        《泊船瓜洲》宋朝·王安石<br>
+        京口瓜洲一水间，<br>
+        钟山只隔数重山。<br>
+        春风又绿江南岸，<br>
+        明月何时照我还。<br>
+      </p>
+    </li>
+    
+    <li>
+      <p>
+       《过零丁洋》宋朝·文天祥<br>
+        辛苦遭逢起一经，干戈寥落四周星。<br>
+        山河破碎风飘絮，身世浮沉雨打萍。<br>
+        惶恐滩头说惶恐，零丁洋里叹零丁。<br>
+        人生自古谁无死？留取丹心照汗青。<br>
+      </p>
+    </li>
+
+    <li>
+      <p>
+        《敕勒歌》南北朝<br>
+        敕勒川，阴山下。<br>
+        天似穹庐，笼盖四野。<br>
+        天苍苍，野茫茫，风吹草低见牛羊。<br>
+      </p>
+    </li>
+  </div>
+  <style>
+    .p1{
+    width: 65%;
+    float: right;
+    }
+  </style>
+
+</body>
+<script>
+    window.onload =  function(){
+      var b = document.getElementById("btn")
+      b.onclick = function () {
+        var a = document.getElementById("find")
+        alert(a.value)
+      }
+    }
+</script>
+</html>

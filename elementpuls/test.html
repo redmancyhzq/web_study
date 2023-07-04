@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="elementplus.css">
+  <script src="vue3.js"></script>
+  <script src="element-ui.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    
+    <el-button type="info" @click="selectSort">选择排序按钮</el-button>
+    <el-button type="info" @click="funSort">sort排序按钮</el-button>
+    <el-button type="warning" @click="add">测试{{i}}</el-button>
+    <el-input v-model="input" :value="i"  />
+   
+  </div>
+</body>
+<script>
+  const App= {
+    data() {
+      return {
+        i:0,
+        
+      }
+    },
+    methods: {
+      add(){
+        this.i++
+      },
+      selectSort() {
+        let arr= [5,77,33,21,43,87,28,90,73,100]
+        console.log('arr :>> ', arr);
+        for( let  i = 0; i < arr.length - 1; i++) {
+          let min = i;
+          for (let j = i + 1; j < arr.length; j++) {
+            if(arr[min] > arr[j]){
+              min = j;
+            }
+            var temp = arr[min];
+            arr[min] = arr[i];
+            arr[i] = temp;
+          }
+          console.log('arr :>> ', arr);
+        }
+      },
+      funSort() {
+        var arr = [5,77,33,21,43,87,28,90,73,100]
+        var arr2 = arr.sort(function(item,index){
+          return item - index;
+        })
+        console.log('arr2 :>> ', arr2);
+      }
+    },
+    // setup(){
+    //   const i = 0
+    //   return {
+    //     i
+    //   }  
+    // }
+    // setup() {
+    // let i = 0;
+    // let add = ()=>{
+    //   i++
+    //   console.log('1 :>> ', i);
+    // }
+    // }
+  };
+  Vue.createApp(App).use(ElementPlus).mount("#app");
+</script>
+</html>

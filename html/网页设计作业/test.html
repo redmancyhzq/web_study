@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+  window.onload = function(){
+  var arr = new Array(32, 42, 79, 63, 28, 
+      12, 8, 90, 60, 11, 14, 43);
+  
+  SelectionSort(arr);	//调用选择排序函数
+  
+  console.log(arr);	//打印已排序的数组
+
+}
+
+function SelectionSort(arr){
+  
+  for(var i = 0; i < arr.length; i++){
+      var min = i;	//未排序第一个序列
+
+      for(var j = i + 1; j < arr.length; j++)
+          if(arr[min] > arr[j])	//进行比较
+            min = j;	//找到最小元素
+      swap(arr,min,i);
+}
+
+}
+
+function swap(arr, min, i) {
+  var temp = arr[min];
+  arr[min] = arr[i];
+  arr[i] = temp;
+}
+
+</script>
+</html>

@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Title</title>
+
+    <style>
+
+        .block{
+
+            width:800px;
+
+            height: 80px;
+
+            background-color: #ea8b8b;
+
+            border: 1px solid red;
+
+            margin-bottom: 10px;
+
+        }
+
+    </style>
+
+    <script src="crypto-js.js"></script>
+
+   <!-- <script src="sha256.js"></script>-->
+
+</head>
+
+<body>
+
+<div id="b0" class="block"></div>
+
+<div id="b1" class="block"></div>
+
+<div id="b2" class="block"></div>
+
+<div id="b3" class="block"></div>
+
+<script >
+
+   /* import sha256 from 'crypto-js/sha256'*/
+
+/*    import hmacSHA512 from 'crypto-js/hmac-sha512'
+
+    import Base64 from 'crypto-js/enc-base64'*/
+
+/*    var v = CryptoJS.enc.Utf8.parse('1234567890123456');
+
+    console.log(v);*/
+
+/*   import * as CryptoJS from '/crypto-js';*/
+
+
+
+
+
+   //区块
+
+   class Block {
+
+       constructor(data) {
+
+           this.data = data
+
+           this.previousHash = ''
+
+           this.nonce = 1
+
+           this.hash = this.computeHash()
+
+       }
+
+
+
+       computeHash() {
+
+           return CryptoJS.SHA256(this.data + this.previousHash + this.nonce).toString()
+
+       }
+
+       // 计算符合区块链难度的hash值
+
+       mine(difficulty){
+
+           while(true){
+
+               this.hash = this.computeHash()
+
+               if(this.hash.substring(0, difficulty) !== this.getAnswer(difficulty)){
+
+                   this.nonce++
+
+               }else{
+
+                   break
+
+               }
+
+           }
+
+       }
+
+
+
+       getAnswer(difficulty){
+
+           // 开头前n位为0的hash
+
+           let answer = ''
+
+           while(difficulty-- !== 0){
+
+               answer += '0'
+
+           }
+
+           return answer
+
+       }
+
+   }
+
+
+
+   //区块 的 链
+
+   //生成祖先区块
+
+   class Chain{
+
+       constructor(){
+
+           this.chain = [this.bigBang()]
+
+           this.difficulty = 4
+
+       }
+
+
+
+       bigBang(){
+
+           const genesisBlock = new Block('创世区块')
+
+           return genesisBlock
+
+       }
+
+
+
+       //获取最新一个区块
+
+       getLatestBlock(){
+
+           return this.chain[this.chain.length-1]
+
+       }
+
+
+
+       //添加新区块
+
+       addBlockToChain(newBlock){
+
+           // 1、data 2、previousHash
+
+           newBlock.previousHash = this.getLatestBlock().hash
+
+           newBlock.hash = newBlock.computeHash()
+
+           // 进行挖矿
+
+           newBlock.mine(this.difficulty)
+
+           this.chain.push(newBlock)
+
+       }
+
+
+
+       //区块链验证 当前数据是否被篡改 当前区块的previousHash是否等于它的previous的hash值
+
+       validateChain(){
+
+
+
+           // 验证祖先区块数据是否被篡改
+
+           if(this.chain.length===1){
+
+               if(this.chain[0].hash !== this.chain[0].computeHash()){
+
+                   return false
+
+               }
+
+               return true
+
+           }
+
+
+
+           // 验证其他区块
+
+           for(let i = 1, len = this.chain.length-1; i <= len; i++){
+
+               const blockToValidate = this.chain[i]
+
+               // 验证数据是否被篡改
+
+               if(blockToValidate.hash !== blockToValidate.computeHash()){
+
+                   console.log("数据被篡改！")
+
+                   return false
+
+               }
+
+               // 验证hash值
+
+               if(blockToValidate.previousHash !== this.chain[i-1].hash){
+
+                   console.log("前后区块断裂！")
+
+                   return false
+
+               }
+
+           }
+
+           return true
+
+       }
+
+
+
+   }
+
+   const zzBlock = new Block('转账10000')
+
+   const zzBlock2 = new Block('转账3210')
+
+   const zzBlock3 = new Block('转账210')
+
+   const blockChain = new Chain()
+
+   blockChain.addBlockToChain(zzBlock)
+
+   blockChain.addBlockToChain(zzBlock2)
+
+   blockChain.addBlockToChain(zzBlock3)
+
+
+
+   document.getElementById("b0").innerHTML="<div>previousHash："+blockChain.chain[0].previousHash+"</div><div>"+blockChain.chain[0].data+"</div><div>"+blockChain.chain[0].hash+"</div>"
+
+   document.getElementById("b1").innerHTML="<div>previousHash："+zzBlock.previousHash+"</div><div>"+zzBlock.data+"</div><div>"+zzBlock.hash+"</div>"
+
+   document.getElementById("b2").innerHTML="<div>previousHash："+zzBlock2.previousHash+"</div><div>"+zzBlock2.data+"</div><div>"+zzBlock2.hash+"</div>"
+
+   document.getElementById("b3").innerHTML="<div>previousHash："+zzBlock3.previousHash+"</div><div>"+zzBlock3.data+"</div><div>"+zzBlock3.hash+"</div>"
+
+
+
+   let div=document.createElement('div')
+
+   div.id="b4"
+
+   div.className="block"
+
+   div.innerHTML="<div>previousHash："+zzBlock3.previousHash+"</div><div>"+zzBlock3.data+"</div><div>"+zzBlock3.hash+"</div>"
+
+   let bd=document.body
+
+   bd.insertBefore(div,bd.lastChild)
+
+
+
+   document.write("区块长度："+blockChain.chain.length)
+
+   console.log(blockChain.chain.length)
+
+   console.log(blockChain)
+
+   console.log("尝试篡改数据  转账10W")
+
+   //尝试篡改数据
+
+/*   blockChain.chain[1].data = '转账10W'
+
+   blockChain.chain[1].mine(4)*/
+
+
+
+   console.log(blockChain)
+
+   console.log(blockChain.validateChain())
+
+
+
+
+
+   //获取密钥对
+
+   function getRsaKeys(func){
+
+       window.crypto.subtle.generateKey(
+
+           {
+
+               name: "RSA-OAEP",
+
+               modulusLength: 2048, //can be 1024, 2048, or 4096
+
+               publicExponent: new Uint8Array([0x01, 0x00, 0x01]),
+
+               hash: {name: "SHA-512"}, //can be "SHA-1", "SHA-256", "SHA-384", or "SHA-512"
+
+           },
+
+           true, //whether the key is extractable (i.e. can be used in exportKey)
+
+           ["encrypt", "decrypt"] //must be ["encrypt", "decrypt"] or ["wrapKey", "unwrapKey"]
+
+       ).then(function(key){
+
+           window.crypto.subtle.exportKey(
+
+               "pkcs8",
+
+               key.privateKey
+
+           ).then(function(keydata1){
+
+               window.crypto.subtle.exportKey(
+
+                   "spki",
+
+                   key.publicKey
+
+               ).then(function(keydata2){
+
+                   var privateKey = RSA2text(keydata1,1);
+
+                   var publicKey = RSA2text(keydata2);
+
+                   var code = {
+
+                       'privateKey':privateKey,
+
+                       'publicKey':publicKey
+
+                   }
+
+                   console.log(code)
+
+                   RSA2text(privateKey,publicKey);
+
+               }).catch(function(err){
+
+                   console.error(err);
+
+               });
+
+           })
+
+               .catch(function(err){
+
+                   console.error(err);
+
+               });
+
+       })
+
+           .catch(function(err){
+
+               console.error(err);
+
+           });
+
+   }
+
+   function RSA2text(buffer,isPrivate=0) {
+
+       var binary = '';
+
+       var bytes = new Uint8Array(buffer);
+
+       var len = bytes.byteLength;
+
+       for (var i = 0; i < len; i++) {
+
+           binary += String.fromCharCode(bytes[i]);
+
+       }
+
+       var base64 = window.btoa(binary);
+
+       var text = "-----BEGIN "+(isPrivate?"PRIVATE":"PUBLIC")+" KEY-----\n";
+
+       text += base64.replace(/[^\x00-\xff]/g,"$&\x01").replace(/.{64}\x01?/g,"$&\n");
+
+       text += "\n-----END "+(isPrivate?"PRIVATE":"PUBLIC")+" KEY-----";
+
+       return text;
+
+   }
+
+
+
+   //在使用时调用
+
+   console.log(getRsaKeys());
+
+
+
+
+
+</script>
+
+</body>
+
+</html>
+

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ModifyInformation</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: "微软雅黑";
+    }
+    .top{
+      width: 32%;
+      margin-left: 18%;
+      margin-top: 30%;
+    }
+    .home_top{
+      background-color: #a81818;
+      height: 58px;
+      width: 100%;
+      min-width: 1400px;
+    }
+    .home_top ul{
+      margin: 0 auto;
+      width: 65%;
+      list-style: none;
+    }
+    .home_top ul li{
+      display: inline-block;
+      width: 12%;
+      line-height: 58px;
+      text-align: center;
+      color: #fff;
+      font-size: 15px;
+    }
+    .home_top ul li a{
+      color: #fff;
+      border-right: 1px #fff solid;
+      padding-right: 35px;
+      text-decoration: none;
+    }
+    .nav1{
+      width: 40%;
+      display: inline-block;
+      background-color: #fc8006;
+    }
+    .content_index1{
+      width:65%;
+      margin: 0 auto;
+      min-width: 1400px;
+      margin-top: 24px;
+    }
+    /* .content-index1 {
+      width: 65%;
+      margin: 0 auto;
+      overflow: hidden;
+      margin-top: 24px;
+      min-width: 1400px;
+   } */
+    .left1{
+      float: left;
+      margin: 0 auto;
+      width: 21%;
+      margin-right: 1%;
+      border: 1px #dcdcdc solid;
+      background-color: #f5f5f5;
+    }
+    .left1 p {
+      line-height: 64px;
+      text-align: center;
+      color: #fff;
+      font-size: 24px;
+      font-weight:700;
+      background-color: #77c3fe;
+    }
+    .left1 ul{
+      width: 80%;
+      margin: 0 auto;
+      padding-top: 40px;
+      padding-bottom: 20px;
+      list-style: none;
+    }
+    .left1 ul li{
+      margin-top: 12px;
+      width: 80%;
+      line-height: 44px;
+    }
+    .left1 ul li a{
+      display: inline-block;
+      width: 75%;
+      height: 44px;
+      line-height: 44px;
+      background-color: #f3f3f3;
+      border-radius: 6px;
+      border: 1px #e2e6ef solid;
+      padding-left: 20%;
+      box-shadow: 1px 1px 10px #e3e3e3;
+      text-decoration: none;
+      color: #9699a1;
+    }
+    .left1 ul li a.one{
+      color: #e83928;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .right1{
+      width: 76%;
+      border: 1px #dfdfdf solid;
+      float: right;
+    }
+    .right1_top{
+      width: 76% ;
+      margin-top: 0;
+      height: 64px;
+      line-height: 64px;
+      color: #6a6a6a;
+      background-color: #eee;
+      font-size: 18px;
+    }
+    
+    .personalWork {
+      margin: 3% 3% 8% 3%;
+    }
+    .btnn {
+      width: 80px;
+      border: 1px solid;
+      border-radius: 5px;
+      font: 16px/34px "微软雅黑";
+      color: #fff;
+      cursor: pointer;
+    }
+    .tijiao{
+      background-color: #ff6600;
+      border-color: #ff4400;
+    }
+    .fanhui{
+      background-color: #fea901;
+      border-color: #fe8701;
+    }
+    .form_data label{
+      width: 15%;
+      text-align: right;
+      display: inline-block;
+      padding-right: 5px;
+    }
+    .form_data input{
+      height: 45px;
+      line-height: 45px;
+      text-indent: 1em;
+      border-radius: 5px;
+      border: 1px #c8c6c6 solid;
+    }
+    .data_submit{
+      width: 15%;
+      height: 45px;
+      line-height: 45px;
+      background-color: #4aa2e5;
+      border-radius: 5px;
+      text-align: center;
+      color: #fff;
+      margin-right: 2%
+    }
+  </style>
+</head>
+<body>
+  <div class="top" style="margin-top: 15px;" >
+    <img src="logo.png">
+  </div>
+  <div class="home_top">
+    <ul>
+      <li>
+        <a href="./login.html">首页</a>
+      </li>
+      <li class="nav1">
+        <a style="border:0 none;padding-right: 0px;" href="./home.html">个人中心</a>
+      </li>
+    </ul>
+  </div>
+  <div>
+    <div class="content_index1">
+      <div class="left1">
+        <p>用户中心</p>
+        <ul>
+          <li>
+            <a href="./home.html" >>   课程选择</a>
+          </li>
+          <li>
+            <a href="./home.html">>   课程中心</a>
+          </li>
+          <li>
+            <a href="./home.html">>   课程直播</a>
+          </li>
+          <li>
+            <a href="./Certificate.html" >>   结业证书</a>
+          </li>
+          <li>
+            <a href="./home.html">>   历史学习详情</a>
+          </li>
+          <li>
+            <a href="./ModifyInformation.html" class="one">>   修改个人信息</a>
+          </li>
+          <li>
+            <a href="./login.html">>   退出</a>
+          </li>
+        </ul>
+      </div>
+      <div class="right1">
+        <p style="text-align: left;" class="right1_top">修改信息</p>
+        <form class="form_data" >
+        <div style="margin-top: 20px;">
+          <label>
+            <em style="color:red ;padding: 0 5px;">*</em>
+            真实姓名：
+          </label>
+          <input style="width: 20%;" type="text" value="胡志群">        
+        </div>
+        <div style="margin-top: 20px;">
+          <label>
+            <em style="color:red ;padding: 0 5px;">*</em>
+            性别：
+          </label>
+          <input style="height: auto;margin-right: 5px;" type="radio"  value="男">
+            男  
+          <input style="height: auto;margin-right: 5px;" type="radio"  value="女" checked>
+            女    
+        </div>
+        <div style="margin-top: 20px;">
+          <label>
+            <em style="color:red ;padding: 0 5px;">*</em>
+            所在省份：
+          </label>
+          <input style="width: 20%;" type="text" value="江西省">        
+        </div>
+        <div style="margin-top: 20px;">
+          <label>
+            <em style="color:red ;padding: 0 5px;">*</em>
+            学校：
+          </label>
+          <input style="width: 20%;" type="text" value="江西工程学院">        
+        </div>
+        <div style="margin-top: 20px;">
+          <label>
+            <em style="color:red ;padding: 0 5px;">*</em>
+            院系：
+          </label>
+          <input style="width: 20%;" type="text" value="区块链学院">        
+        </div>
+        <div style="margin-top: 20px;">
+          <label>
+            <em style="color:red ;padding: 0 5px;">*</em>
+            所属专业：
+          </label>
+          <input style="width: 20%;" type="text" value="电子信息类">        
+        </div>
+        <div style="margin-top: 20px;">
+          <label>
+            <em style="color:red ;padding: 0 5px;">*</em>
+            手机：
+          </label>
+          <input style="width: 20%;" type="text" value="18870723942">        
+        </div>
+        <div style="margin-top: 20px;">
+          <label>
+            新密码：
+          </label>
+          <input style="width: 20%;" type="text" >        
+        </div>
+        <div style="margin-top: 20px;">
+          <label>
+            确认密码：
+          </label>
+          <input style="width: 20%;" type="text" >        
+        </div>
+        <div style="margin: 6% 0;">
+          <label></label>
+          <input type="submit" value="修改" class="data_submit">
+        </div>
+      </form>
+     </div>
+    </div>
+  </div> 
+  </div>  
+</body>
+</html>
