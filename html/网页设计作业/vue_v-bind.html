@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/elementpuls/elementplus.css">
+  <script src="/elementpuls/vue3.js"></script>
+  <script src="/elementpuls/element-ui.js"></script>
+  <title>Document</title>
+
+</head>
+<style>
+.Active{
+  height: 200px;
+  width: 200px;
+  background-color: aqua;
+}
+.db{
+  margin-top: 210px;
+  height: 200px;
+  width: 200px;
+}
+</style>
+<body>
+
+  <div id="app">
+    <div :class="{Active: isActive}">class与style绑定</div>
+      <el-button type="warning" @click="change">点击改变样式</el-button>
+      <div>
+        <img :src="pic"/>
+        <el-input v-model="pic" placeholder="Please input" />
+    </div>
+    </div>
+
+
+  
+</body>
+<script>
+  const App = {
+    data() {
+      return{
+        isActive: false,
+        pic: "logo.png",
+      }
+    },
+    methods: {
+      change(){
+        this.isActive = !this.isActive
+      }
+    },
+  }
+  Vue.createApp(App).use(ElementPlus).mount("#app");
+</script>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script src="crypto-js.js"></script>
+        <script>
+            //aes加密
+            function encrypt() {
+                let word = document.getElementById("en").value
+                /* const key = CryptoJS.enc.Utf8.parse("1234567890000000") // 加密秘钥 16位
+                const iv = CryptoJS.enc.Utf8.parse("1234567890000000") // 加密矢量
+                let encrypted = ""
+                if (typeof word == "string") {
+                    let srcs = CryptoJS.enc.Utf8.parse(word)
+                    encrypted = CryptoJS.AES.encrypt(srcs, key, {
+                        iv: iv,
+                        mode: CryptoJS.mode.CBC,
+                        padding: CryptoJS.pad.Pkcs7
+                    })
+                } else if (typeof word == "object") {
+                    //对象格式的转成json字符串
+                    data = JSON.stringify(word)
+                    let srcs = CryptoJS.enc.Utf8.parse(data)
+                    encrypted = CryptoJS.AES.encrypt(srcs, key, {
+                        iv: iv,
+                        mode: CryptoJS.mode.CBC,
+                        padding: CryptoJS.pad.Pkcs7
+                    })
+                }
+                let data = encrypted.ciphertext.toString()
+                document.getElementById("de").innerText = data */
+                var key = CryptoJS.enc.Utf8.parse("46cc793c53dc451b");
+                var srcs = CryptoJS.enc.Utf8.parse(word);
+                var encrypted = CryptoJS.AES.encrypt(srcs, key, {
+                  mode: CryptoJS.mode.ECB,
+                  padding: CryptoJS.pad.Pkcs7
+                });
+                let aa = encrypted.toString();
+                document.getElementById("de").innerText = aa
+            }
+
+            function decryption() {
+                let word = document.getElementById("en").value
+                /* let key = CryptoJS.enc.Utf8.parse("0880076B18D7EE81") // 加密秘钥
+                let iv = CryptoJS.enc.Utf8.parse("CB3EC842D7C69578") //  矢量 */
+                /* let baseResult = CryptoJS.enc.Base64.parse(word) // Base64解密
+                let ciphertext = CryptoJS.enc.Base64.stringify(baseResult) // Base64解密
+                let decryptResult = CryptoJS.AES.decrypt(ciphertext, key, {
+                    //  AES解密
+                    iv: iv,
+                    mode: CryptoJS.mode.CBC,
+                    padding: CryptoJS.pad.Pkcs7
+                }) // 第一种
+                let resData = decryptResult.toString(CryptoJS.enc.Utf8).toString()
+                // let data1 = JSON.parse(resData)
+                console.log(resData, 'data1');
+                // 第二种
+                let data = CryptoJS.enc.Utf8.stringify(decryptResult)
+                document.getElementById("de").innerText = data */
+  
+                var key = CryptoJS.enc.Utf8.parse("46cc793c53dc451b");
+                var decrypt = CryptoJS.AES.decrypt(word, key, {
+                  mode: CryptoJS.mode.ECB,
+                  padding: CryptoJS.pad.Pkcs7
+                });
+                let dd = CryptoJS.enc.Utf8.stringify(decrypt).toString();
+                document.getElementById("de").innerText = dd
+            }
+
+            /* function encode() {
+                let str = document.getElementById("en").value
+                var aseKey = "123456"
+                var encrypt = CryptoJS.AES.encrypt(
+                    str,
+                    CryptoJS.enc.Utf8.parse(aseKey), // 参数1=密钥, 参数2=加密内容
+                    {
+                        mode: CryptoJS.mode.ECB, // 为DES的工作方式
+                        padding: CryptoJS.pad.Pkcs7 // 当加密后密文长度达不到指定整数倍(8个字节、16个字节)则填充对应字符
+                    }
+                ).toString() // toString=转字符串类型
+                document.getElementById("de").innerText = encrypt
+            } */
+           /*  function decode() {
+                let str = document.getElementById("en").value
+                let aseKey = "123456"
+                var decrypt = CryptoJS.AES.decrypt(
+                    str,
+                    CryptoJS.enc.Utf8.parse(aseKey), // 参数1=密钥, 参数2=加密内容
+                    {
+                        mode: CryptoJS.mode.ECB, // 为DES的工作方式
+                        padding: CryptoJS.pad.Pkcs7 // 当加密后密文长度达不到指定整数倍(8个字节、16个字节)则填充对应字符
+                    }
+                ).toString(CryptoJS.enc.Utf8) // toString=转字符串类型
+                // if(chrome.runtime.lastError){}
+                // callback(encrypt)
+                console.log(decrypt, "decrypt", str)
+                document.getElementById("de").innerText = decrypt
+            } */
+            /* function aec() {
+                var aseKey = "123456"
+                let str = document.getElementById("en").value
+                var encrypt = CryptoJS.AES.encrypt(
+                    str,
+                    CryptoJS.enc.Utf8.parse(aseKey), // 参数1=密钥, 参数2=加密内容
+                    {
+                        mode: CryptoJS.mode.ECB, // 为DES的工作方式
+                        padding: CryptoJS.pad.Pkcs7 // 当加密后密文长度达不到指定整数倍(8个字节、16个字节)则填充对应字符
+                    }
+                ).toString() // toString=转字符串类型
+                var decrypt = CryptoJS.AES.decrypt(
+                    str,
+                    CryptoJS.enc.Utf8.parse(aseKey), // 参数1=密钥, 参数2=加密内容
+                    {
+                        mode: CryptoJS.mode.ECB, // 为DES的工作方式
+                        padding: CryptoJS.pad.Pkcs7 // 当加密后密文长度达不到指定整数倍(8个字节、16个字节)则填充对应字符
+                    }
+                ).toString(CryptoJS.enc.Utf8) // toString=转字符串类型
+                document.getElementById("de").innerHTML = encrypt + decrypt
+            } */
+        </script>
+    </head>
+    <body>
+        <div>非对称加密公钥(请使用txt记事本将下面加密字符串存为pub.key文件):</div>
+        <textarea id="en" class="textarea"></textarea>
+        <textarea id="de" class="textarea"></textarea>
+        <input type="button" value="生成对称秘钥" class="btn" onclick="encrypt()" />
+        <input type="button" value="解密" class="btn" onclick="decryption()" />
+        <input type="button" value="加解密" class="btn" onclick="aec()" />
+
+        <style>
+            .textarea {
+                width: 98%;
+                border: 1px solid #eb8f00;
+                height: 220px;
+                text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+                border-radius: 4px;
+                padding: 5px 10px;
+            }
+        </style>
+    </body>
+</html>

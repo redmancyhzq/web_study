@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>定时器</title>
+</head>
+<body>
+  <div id="time"></div>
+  <input value="点击停止" type="button" onclick="stop1()"/><br>
+
+
+  <div class="t" id="t1">计时器</div>
+  <input value="开始计时" type="button" onclick="start()"/>
+  <input value="停止计时" type="button" onclick="stop2()"/>
+
+</body>
+<script>
+  function stop() {
+    clearInterval(it1)
+  }
+  let it = setInterval(show,1000)  //定时器，每一秒钟调用一次show
+  function show(){
+    let tt = (new Date()).toLocaleString() //New一个时间 本地时间
+    //console.log(tt)
+    //document.write(tt)
+    document.getElementById("time").innerHTML=tt
+   }
+
+
+   let s = 0
+   let it2
+   function start() {
+    it2 = setInterval(ShowSeconds,1000)
+    document.getElementById("t1").setAttribute("style","color:red;font-size:50px")
+   }
+   function ShowSeconds() {
+    s++
+    document.getElementById("t1").innerHTML = s
+    
+   }
+   function stop2() {
+    clearInterval(it2)
+  }
+</script>
+</html>

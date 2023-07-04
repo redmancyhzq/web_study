@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+</head>
+<body>
+    <div class="box" >box1</div>
+    <div class="box">box2</div>
+    <div class="box">box3</div>
+
+    <style>
+      body{
+        width: 100%;
+        height: 100vh;
+         /* 从默认对齐改为左右对齐 */
+        display: flex;
+        /* 沿着横轴方向居中对齐 */
+        justify-content: center;
+        /* 靠右对齐 */
+        justify-content: flex-end;
+        /* 左右两边对齐，间距相等 */
+        justify-content: space-between;
+        /* 项目之间的距离为左右两侧到容器之间的2倍 */
+        justify-content: space-around;
+        /* 间距都相等 */
+        justify-content: space-evenly;
+        /* 居中(垂直和水平居中) */
+        align-items: center;
+        justify-content: center;
+      }
+      .box{
+        width: 300px;
+        height: 300px;
+        margin: 10px;
+ 
+        background-color: pink;
+      }
+    </style>
+</body>
+</html>

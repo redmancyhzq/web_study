@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=\, initial-scale=1.0">
+  <title>javascript</title>
+</head>
+<body>
+  <a id="a1">aaaa</a> <input type="button" id="btn" value="按钮"/><br>
+  <a id="a2">bbbb</a><br>
+  <input id="a3"/>
+</body>
+<script>
+
+  window.onload = function() {
+    var btn = document.getElementById("btn") 
+    btn.onclick = function(){         //匿名函数
+      document.getElementById("a1").innerHTML="innerHTML起作用"
+      document.getElementById("a1").setAttribute("style","color:green;background-color:blue")
+      document.getElementById("a2").text="text起作用"
+      document.getElementById("a2").style.color="red"
+      document.getElementById("a2").style.fontSize="35px"
+      document.getElementById("a3").value="value起作用"
+
+    }
+    
+  }
+    
+</script>
+</html>

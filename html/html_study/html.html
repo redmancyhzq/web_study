@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <div class="test">
+    <div class="imgdiv">
+      <img src="img/2.jpg"/>
+    </div>
+  </div>
+  <style>
+    .test{
+      float: left;
+      width: 100px;
+      height: 100px;
+      border:solid 5px black;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+    }
+    .test img{
+      float: left;
+      /* 边框 */
+      /* border:solid 1px pink; */
+      border: radius 100px; 
+      /* 超出盒子，立马隐藏 */
+      overflow:hidden;
+      width: 280px;  
+      height: 280px;
+      transition: all 0.9s;
+    }
+    .test img:hover {
+      border:solid 1px pink;
+      /* transform: scale(1.5); */
+    }
+    .test:hover {
+      background-color:pink;
+    }
+  </style>
+</body>
+</html>

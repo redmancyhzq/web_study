@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="crypto-js.js"></script>
+<script>
+  function encode() {
+    let str = document.getElementById("en").value
+    var aseKey = "46cc793c53dc451b"
+    var encrypt = CryptoJS.AES.encrypt(str, CryptoJS.enc.Utf8.parse(aseKey),  // 参数1=密钥, 参数2=加密内容
+    {
+      mode: CryptoJS.mode.ECB, // 为DES的工作方式
+      padding: CryptoJS.pad.Pkcs7  // 当加密后密文长度达不到指定整数倍(8个字节、16个字节)则填充对应字符
+    }
+    ).toString(); // toString=转字符串类型
+    document.getElementById("de").innerText = encrypt
+  }
+  function decode() {
+    let str = document.getElementById("en").value
+    let aseKey = "46cc793c53dc451b"
+    var decrypt = CryptoJS.AES.encrypt(str, CryptoJS.enc.Utf8.parse(aseKey),  // 参数1=密钥, 参数2=加密内容
+    {
+      mode: CryptoJS.mode.ECB, // 为DES的工作方式
+      padding: CryptoJS.pad.Pkcs7  // 当加密后密文长度达不到指定整数倍(8个字节、16个字节)则填充对应字符
+    }
+    ).toString(CryptoJS.enc.Utf8); // toString=转字符串类型
+    //if(chrome.runtime.lastError){}
+    // callback(encrypt)
+    document.getElementById("de").value = decrypt
+  }
+  function aec() {    
+    var aseKey = "46cc793c53dc451b"
+    let str = document.getElementById("en").value
+    var encrypt = CryptoJS.AES.encrypt(str, CryptoJS.enc.Utf8.parse(aseKey),  // 参数1=密钥, 参数2=加密内容
+    {
+      mode: CryptoJS.mode.ECB, // 为DES的工作方式
+      padding: CryptoJS.pad.Pkcs7  // 当加密后密文长度达不到指定整数倍(8个字节、16个字节)则填充对应字符
+    }
+    ).toString(); // toString=转字符串类型
+    var decrypt = CryptoJS.AES.encrypt(encrypt, CryptoJS.enc.Utf8.parse(aseKey),  // 参数1=密钥, 参数2=加密内容
+    {
+      mode: CryptoJS.mode.ECB, // 为DES的工作方式
+      padding: CryptoJS.pad.Pkcs7  // 当加密后密文长度达不到指定整数倍(8个字节、16个字节)则填充对应字符
+    }
+    ).toString(CryptoJS.enc.Utf8); // toString=转字符串类型
+    document.getElementById("de").innerHTML = encrypt + decrypt;
+  }
+</script>
+</head>
+<body>
+  <div>非对称加密公钥(请使用txt记事本将下面加密字符串存为pub.key文件):</div>
+    <textarea  id="en" class="textarea" ></textarea>   
+    <textarea  id="de" class="textarea"></textarea>
+    <input type="button" value="生成对称秘钥"  class="btn" onclick="encode()">
+    <input type="button" value="解密"  class="btn" onclick="decode()">
+    <input type="button" value="加解密"  class="btn" onclick="aec()">
+
+    <style>
+      .textarea{
+        width: 98%;
+        border: 1px solid #EB8F00;
+        height: 220px;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+        border-radius: 4px;
+        padding: 5px 10px;
+      }
+    </style>
+</body>
+
+</html>

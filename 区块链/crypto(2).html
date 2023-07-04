@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>加密</title>
+    <script src="crypto-js.js"></script>
+</head>
+<style>
+    body,
+    html {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* .text{
+      width: 100%;
+      background-color: #d9edf7;
+      height: 130px;
+    } */
+    .container {
+        width: 100%;
+        height: 100%;
+        background-color: #d9edf7;
+        flex-direction: column;
+        display: flex;
+    }
+
+    .head {
+        text-align: center;
+    }
+
+    .neon {
+        color: #cce7f8;
+        font-size: 3rem;
+        -webkit-animation: shining 0.5s alternate infinite;
+        animation: shining 0.5s alternate infinite;
+
+    }
+
+    @-webkit-keyframes shining {
+        from {
+            text-shadow: 0 0 10px lightblue, 0 0 20px lightblue, 0 0 30px lightblue, 0 0 40px skyblue, 0 0 50px skyblue, 0 0 60px skyblue;
+        }
+
+        to {
+            text-shadow: 0 0 5px lightblue, 0 0 10px lightblue, 0 0 15px lightblue, 0 0 20px skyblue, 0 0 25px skyblue, 0 0 30px skyblue;
+        }
+    }
+
+    .btn {
+        text-align: center;
+    }
+
+    .text {
+        text-align: center;
+    }
+
+
+</style>
+
+
+<body>
+<div class="container">
+    <!-- 头部标题 -->
+    <div class="neon" style="text-align: center; font-size: 30px; background-color: rgb(0, 0, 0);">
+        这是一个AES加密算法
+    </div>
+
+    <div class="text">
+        <textarea name="" id="en" cols="100%" rows="10" style="text-align: center;  ;"></textarea>
+    </div>
+    <div class="btn">
+        <input type="button" value="加密" id='btn' style="background-color: aquamarine;" onclick="encode()">
+        <input type="button" value="解密" id='btn1' style="background-color: red;" onclick="decode()">
+    </div>
+    <div class="text">
+        <textarea name="" id="de" cols="100%" rows="10"></textarea>
+    </div>
+</div>
+<script>
+
+    function encode() {
+        let word = document.getElementById("en").value
+        // let aseKey = prompt("请输入您所要创建的密钥(妥善保管)").toString()
+        // console.log("en" + aseKey)
+        var key = CryptoJS.enc.Utf8.parse("46cc793c53dc451b");
+        var srcs = CryptoJS.enc.Utf8.parse(word);
+        var encrypted = CryptoJS.AES.encrypt(srcs, key, {
+            mode: CryptoJS.mode.ECB,
+            padding: CryptoJS.pad.Pkcs7
+        });
+        let aa = encrypted.toString();
+        document.getElementById("de").innerText = aa
+    }
+    function decode() {
+        let word = document.getElementById("en").value
+        // let aseKey = prompt("请输入您创建的密钥").toString()
+        // console.log("de" + aseKey)
+        var key = CryptoJS.enc.Utf8.parse("46cc793c53dc451b");
+        var decrypt = CryptoJS.AES.decrypt(word, key, {
+            mode: CryptoJS.mode.ECB,
+            padding: CryptoJS.pad.Pkcs7
+        });
+        let dd = CryptoJS.enc.Utf8.stringify(decrypt).toString();
+        // alert(dd)
+        document.getElementById("de").innerText = dd
+    }
+</script>
+</body>
+
+
+
+
+</html>
